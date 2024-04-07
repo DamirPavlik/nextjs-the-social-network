@@ -36,7 +36,7 @@ const Form: React.FC<authFormProps> = ({ isRegister }) => {
               className="bg-primary-bg-tint border-[3px] border-border-color px-3 py-2 rounded-md w-full outline-none"
             />
           </div>
-          <div className="mb-8">
+          <div className="mb-6">
             <label htmlFor="password" className="block">
               Password
             </label>
@@ -49,10 +49,24 @@ const Form: React.FC<authFormProps> = ({ isRegister }) => {
             />
           </div>
           {isRegister && (
-            <div>
-              <label htmlFor="profilePicture">Profile Picture</label>
-              <input type="file" name="profilePicture" id="profilePicture" />
-            </div>
+            <>
+              <div className="mb-8">
+                <label htmlFor="username" className="block">
+                  Username
+                </label>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="username"
+                  className="bg-primary-bg-tint border-[3px] border-border-color px-3 py-2 rounded-md w-full outline-none"
+                />
+              </div>
+              <div>
+                <label htmlFor="profilePicture">Profile Picture</label>
+                <input type="file" name="profilePicture" id="profilePicture" />
+              </div>
+            </>
           )}
           <Button
             title="Submit"
