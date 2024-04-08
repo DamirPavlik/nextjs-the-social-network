@@ -1,6 +1,7 @@
 import { UserProps } from "@/types";
 import { Button } from "..";
 import { setPost } from "@/lib/setPost";
+import { revalidatePath } from "next/cache";
 
 const PostsForm: React.FC<UserProps> = ({ user }) => {
   const username = String(user?.displayName);
@@ -10,6 +11,7 @@ const PostsForm: React.FC<UserProps> = ({ user }) => {
         action={async (formData) => {
           "use server";
           await setPost(formData);
+          revalidatePath("/");
         }}
       >
         <div>
