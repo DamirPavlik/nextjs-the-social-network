@@ -4,6 +4,7 @@ import { setPost } from "@/lib/setPost";
 import { redirect } from "next/navigation";
 
 const PostsForm: React.FC<UserProps> = ({ user }) => {
+  const username = String(user?.displayName);
   return (
     <section>
       <form
@@ -37,7 +38,7 @@ const PostsForm: React.FC<UserProps> = ({ user }) => {
             className="w-full bg-primary-bg border-2 border-border-color rounded-md px-4 pt-[10px] pb-[9px] resize-none"
           ></textarea>
         </div>
-        <input type="hidden" name="userId" id="userId" value={user?.uid} />
+        <input type="hidden" name="username" id="username" value={username} />
         <Button title="Submit" buttonType="submit" />
       </form>
     </section>

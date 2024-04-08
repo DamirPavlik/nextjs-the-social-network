@@ -7,7 +7,7 @@ export async function getPosts() {
     id: doc.id,
     title: doc.data().title,
     content: doc.data().content,
-    userId: doc.data().userId,
+    username: doc.data().username,
     likes: doc.data().likes,
   }));
   return posts;

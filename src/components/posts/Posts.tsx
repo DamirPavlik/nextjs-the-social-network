@@ -15,7 +15,7 @@ const Posts = async () => {
         >
           <h2 className="text-xl">{post.title}</h2>
           <p>Post Content:{post.content}</p>
-          <p>User ID: {post.userId}</p>
+          <p>Username: {post.username}</p>
           <p>Likes: {post.likes}</p>
         </div>
       ))}
