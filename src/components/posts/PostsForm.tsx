@@ -1,7 +1,6 @@
 import { UserProps } from "@/types";
 import { Button } from "..";
 import { setPost } from "@/lib/setPost";
-import { redirect } from "next/navigation";
 
 const PostsForm: React.FC<UserProps> = ({ user }) => {
   const username = String(user?.displayName);

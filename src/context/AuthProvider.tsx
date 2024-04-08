@@ -11,7 +11,6 @@ const AuthProvider: React.FC<any> = ({ children }) => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setUserData(user);
-      console.log("alooooooooooooo");
     } else {
       console.log("singed out");
     }

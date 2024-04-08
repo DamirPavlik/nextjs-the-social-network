@@ -19,7 +19,6 @@ export default async function Home() {
       <div className="max-w-[1440px] block mx-auto">
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-4 bg-gray-200 p-4">
-            {/* fix user type in ts */}
             <Sidebar user={currentUser} />
           </div>
           <div className="col-span-8 bg-gray-300 p-4">

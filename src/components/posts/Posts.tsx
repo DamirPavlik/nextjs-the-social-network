@@ -1,7 +1,4 @@
-import { auth } from "@/firebase/config";
 import { getPosts } from "@/lib/getPosts";
-import { getAuth } from "firebase/auth";
-import firebase from "firebase/compat/app";
 
 const Posts = async () => {
   const posts = await getPosts();
