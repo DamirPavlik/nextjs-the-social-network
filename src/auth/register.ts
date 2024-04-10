@@ -44,7 +44,7 @@ export async function register(formData: FormData) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
 
-      const path = join(__dirname, "../../public", file.name); // Set path to the root of the project's public directory
+      const path = join(__dirname, "../../public/profilePhotos", file.name); // Set path to the root of the project's public directory
       await writeFile(path, buffer);
     }
 
