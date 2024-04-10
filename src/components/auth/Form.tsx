@@ -63,8 +63,8 @@ const Form: React.FC<authFormProps> = ({ isRegister }) => {
                 />
               </div>
               <div>
-                <label htmlFor="profilePicture">Profile Picture</label>
-                <input type="file" name="profilePicture" id="profilePicture" />
+                <label htmlFor="profilePhoto">Profile Picture</label>
+                <input type="file" name="profilePhoto" id="profilePhoto" />
               </div>
             </>
           )}
