@@ -2,11 +2,9 @@ import { auth } from "@/firebase/config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { cookies } from "next/headers";
 import { encrypt } from "./encrypt";
-import { dirname, join } from "path";
+import { join } from "path";
 import { writeFile } from "fs/promises";
-import { fileURLToPath } from "url";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import { DIR_NAME, SITE_URL } from "../constants";
 
 export async function register(formData: FormData) {
   const user = {
@@ -44,8 +42,16 @@ export async function register(formData: FormData) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
 
-      const path = join(__dirname, "../../public/profilePhotos", file.name); // Set path to the root of the project's public directory
+      const path = join(DIR_NAME, "../../public/profilePhotos", file.name); // Set path to the root of the project's public directory
       await writeFile(path, buffer);
+
+      const fullImagePath = `${SITE_URL}profilePhotos/${file.name}`;
+      if (auth.currentUser) {
+        console.log("prislo sem?????");
+        updateProfile(auth.currentUser, {
+          photoURL: fullImagePath,
+        });
+      }
     }
 
     cookies().set("session", session, { expires, httpOnly: true });
