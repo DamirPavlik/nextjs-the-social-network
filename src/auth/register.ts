@@ -34,8 +34,6 @@ export async function register(formData: FormData) {
     } else if (auth.currentUser) {
       updateProfile(auth.currentUser, {
         displayName: user.username,
-      }).then(() => {
-        console.log("added username");
       });
     }
 
@@ -46,11 +44,9 @@ export async function register(formData: FormData) {
       const path = join(DIR_NAME, "../../public/profilePhotos", file.name);
       await writeFile(path, buffer);
 
-      const fullImagePath = `${SITE_URL}profilePhotos/${file.name}`;
       if (auth.currentUser) {
-        console.log("prislo sem?????");
         updateProfile(auth.currentUser, {
-          photoURL: fullImagePath,
+          photoURL: `${SITE_URL}profilePhotos/${file.name}`,
         });
       }
     } else if (auth.currentUser) {
