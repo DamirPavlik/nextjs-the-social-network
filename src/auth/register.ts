@@ -21,6 +21,8 @@ export async function register(formData: FormData) {
 
   const session = await encrypt({ user, expires });
 
+  const file: File | null = user.profilePhoto as unknown as File;
+
   try {
     const res = await createUserWithEmailAndPassword(
       auth,
@@ -37,12 +39,11 @@ export async function register(formData: FormData) {
       });
     }
 
-    if (user.profilePhoto) {
-      const file: File | null = user.profilePhoto as unknown as File;
+    if (file.name !== "undefined") {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
 
-      const path = join(DIR_NAME, "../../public/profilePhotos", file.name); // Set path to the root of the project's public directory
+      const path = join(DIR_NAME, "../../public/profilePhotos", file.name);
       await writeFile(path, buffer);
 
       const fullImagePath = `${SITE_URL}profilePhotos/${file.name}`;
@@ -52,6 +53,10 @@ export async function register(formData: FormData) {
           photoURL: fullImagePath,
         });
       }
+    } else if (auth.currentUser) {
+      updateProfile(auth.currentUser, {
+        photoURL: `${SITE_URL}profilePhotos/default-avatar.png`,
+      });
     }
 
     cookies().set("session", session, { expires, httpOnly: true });
