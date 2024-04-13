@@ -1,13 +1,24 @@
 import { redirect } from "next/navigation";
 import { Button } from "..";
 import { logout } from "@/auth/logout";
+import Link from "next/link";
+import { auth } from "@/firebase/config";
 
 const Header = () => {
+  const username = auth.currentUser?.displayName;
   return (
     <header className="flex px-8 py-6 items-center justify-between bg-primary-bg-shade">
-      <h6 className="leading-none text-lg">
-        The<span className="font-semibold">SocialNetwork</span>
-      </h6>
+      <div className="flex items-center">
+        <h6 className="leading-none text-lg">
+          The<span className="font-semibold">SocialNetwork</span>
+        </h6>
+        <Link href="/" className="ml-12">
+          Dashboard
+        </Link>
+        <Link href={`/users/${username}`} className="ml-12">
+          My Profile
+        </Link>
+      </div>
       <nav>
         <form
           action={async () => {
