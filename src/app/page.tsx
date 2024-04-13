@@ -2,7 +2,7 @@ import { getSession } from "@/auth/getSession";
 import { Posts, PostsForm, Sidebar } from "@/components";
 import Header from "@/components/layout/Header";
 import { auth } from "@/firebase/config";
-import { User } from "firebase/auth";
+import { User, onAuthStateChanged } from "firebase/auth";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
