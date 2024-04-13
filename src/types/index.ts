@@ -20,5 +20,5 @@ export interface PostProps {
   content: string;
   likes: number;
   title: string;
-  userId: string;
+  username: string;
 }
