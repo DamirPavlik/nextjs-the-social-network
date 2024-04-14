@@ -9,9 +9,7 @@ const Post: React.FC<PostProps> = ({ id, username, title, content, likes }) => {
       key={id}
       className="w-full border-border-color border-2 py-4 px-5 mb-4"
     >
-      <h5>
-        <Link href={`/users/${username}`}>{username}</Link>
-      </h5>
+      <h5>{username}</h5>
       <h2 className="text-xl">{title}</h2>
       <p>{content}</p>
 
