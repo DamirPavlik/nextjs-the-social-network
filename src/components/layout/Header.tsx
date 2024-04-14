@@ -15,7 +15,7 @@ const Header = () => {
         <Link href="/" className="ml-12">
           Dashboard
         </Link>
-        <Link href={`/users/${username}`} className="ml-12">
+        <Link href={`/my-profile/${username}`} className="ml-12">
           My Profile
         </Link>
       </div>

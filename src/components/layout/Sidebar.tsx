@@ -22,7 +22,7 @@ const Sidebar: React.FC<UserProps> = ({ user }) => {
         </div>
         <div>
           <Link
-            href={`users/${user?.displayName}`}
+            href={`my-profile/${user?.displayName}`}
             className="w-full py-3 block text-center text-primary-text bg-primary-bg-tint hover:bg-primary-bg  border-[2px] border-border-color rounded-md transition-all duration-300 ease-linear"
           >
             View My Profile
