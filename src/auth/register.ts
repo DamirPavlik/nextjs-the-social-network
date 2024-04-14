@@ -1,10 +1,11 @@
-import { auth } from "@/firebase/config";
+import { auth, db } from "@/firebase/config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { cookies } from "next/headers";
 import { encrypt } from "./encrypt";
 import { join } from "path";
 import { writeFile } from "fs/promises";
 import { DIR_NAME, SITE_URL } from "../constants";
+import { addDoc, collection } from "firebase/firestore";
 
 export async function register(formData: FormData) {
   const user = {
@@ -34,6 +35,10 @@ export async function register(formData: FormData) {
     } else if (auth.currentUser) {
       updateProfile(auth.currentUser, {
         displayName: user.username,
+      }).then(() => {
+        addDoc(collection(db, "usernames"), {
+          username: user.username,
+        });
       });
     }
 
