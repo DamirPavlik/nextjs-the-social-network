@@ -22,3 +22,8 @@ export interface PostProps {
   title: string;
   username: string;
 }
+
+export interface ErrorProps {
+  errors: boolean | { [key: string]: string };
+  type: string;
+}
