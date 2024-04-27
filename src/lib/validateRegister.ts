@@ -34,9 +34,7 @@ export async function validateRegister(
   }
 
   allUsernames.map((item) => {
-    console.log("prislo sem? #1");
     if (item.username === user.username) {
-      console.log("prislo sem? #2");
       errors["username"] = "Username already exists";
     }
   });
