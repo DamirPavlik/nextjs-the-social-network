@@ -1,6 +1,7 @@
+"use server";
 import { Form } from "@/components";
 
-const Register = () => {
+const Register = async () => {
   return (
     <>
       <Form isRegister={true} />
