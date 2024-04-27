@@ -62,7 +62,6 @@ export async function register(formData: FormData) {
 
     cookies().set("session", session, { expires, httpOnly: true });
   } catch (error) {
-    console.log("Error in loggin in:", error);
-    return;
+    return error;
   }
 }
