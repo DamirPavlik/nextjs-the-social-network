@@ -1,11 +1,27 @@
-import { login } from "@/auth/login";
-import { register } from "@/auth/register";
+"use server";
 import { authFormProps } from "@/types";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { Button } from "..";
+import { Button, Error } from "..";
+import { cookies } from "next/headers";
+import { handleLogin } from "@/auth/handleLogin";
+import { handleRegister } from "@/auth/handleRegister";
 
-const Form: React.FC<authFormProps> = ({ isRegister }) => {
+const Form: React.FC<authFormProps> = async ({ isRegister }) => {
+  let errorsObj;
+  const registerErrorCookie = cookies().get("registerError");
+
+  if (registerErrorCookie) {
+    try {
+      const errors = registerErrorCookie.value;
+      if (errors) {
+        errorsObj = JSON.parse(errors);
+      }
+    } catch (e) {
+      console.error("Failed to parse JSON from registerError cookie:", e);
+    }
+  }
+
   return (
     <section className="h-screen bg-primary-bg flex justify-center items-center text-primary-text">
       <div className="bg-primary-bg-tint border-2 border-border-color w-[650px] px-8 pt-10 pb-8 rounded-md">
@@ -16,9 +32,9 @@ const Form: React.FC<authFormProps> = ({ isRegister }) => {
           action={async (formData) => {
             "use server";
             if (isRegister) {
-              await register(formData);
+              await handleRegister(formData);
             } else {
-              await login(formData);
+              await handleLogin(formData);
             }
             redirect("/");
           }}
@@ -35,6 +51,7 @@ const Form: React.FC<authFormProps> = ({ isRegister }) => {
               placeholder="Email"
               className="bg-primary-bg-tint border-[3px] border-border-color px-3 py-2 rounded-md w-full outline-none"
             />
+            {errorsObj ? <Error errors={errorsObj} type="email" /> : null}
           </div>
           <div className="mb-6">
             <label htmlFor="password" className="block">
@@ -47,6 +64,10 @@ const Form: React.FC<authFormProps> = ({ isRegister }) => {
               placeholder="Password"
               className="bg-primary-bg-tint border-[3px] border-border-color px-3 py-2 rounded-md w-full outline-none"
             />
+            {errorsObj ? <Error errors={errorsObj} type="password" /> : null}
+            {cookies().get("loginError") ? (
+              <p>{cookies().get("loginError")?.value}</p>
+            ) : null}
           </div>
           {isRegister && (
             <>
@@ -61,6 +82,9 @@ const Form: React.FC<authFormProps> = ({ isRegister }) => {
                   placeholder="username"
                   className="bg-primary-bg-tint border-[3px] border-border-color px-3 py-2 rounded-md w-full outline-none"
                 />
+                {errorsObj ? (
+                  <Error errors={errorsObj} type="username" />
+                ) : null}
               </div>
               <div>
                 <label htmlFor="profilePhoto">Profile Picture</label>
