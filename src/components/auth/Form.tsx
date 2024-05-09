@@ -71,7 +71,7 @@ const Form: React.FC<authFormProps> = async ({ isRegister }) => {
           </div>
           {isRegister && (
             <>
-              <div className="mb-8">
+              <div className="mb-6">
                 <label htmlFor="username" className="block">
                   Username
                 </label>
@@ -86,16 +86,23 @@ const Form: React.FC<authFormProps> = async ({ isRegister }) => {
                   <Error errors={errorsObj} type="username" />
                 ) : null}
               </div>
-              <div>
-                <label htmlFor="profilePhoto">Profile Picture</label>
-                <input type="file" name="profilePhoto" id="profilePhoto" />
+              <div className="mb-6">
+                <label htmlFor="profilePhoto" className="block">
+                  Profile Picture
+                </label>
+                <input
+                  type="file"
+                  name="profilePhoto"
+                  id="profilePhoto"
+                  className="w-full"
+                />
               </div>
             </>
           )}
           <Button
             title="Submit"
             buttonType="submit"
-            containerStyles="pt-2 pb-[7px] w-full"
+            containerStyles="pt-2 pb-[7px] w-full mt-2"
           />
         </form>
         {isRegister ? (
