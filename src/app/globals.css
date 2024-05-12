@@ -14,3 +14,21 @@ body {
     color: #c5d1de;
     background-color: #22272e;
 }
+
+input::file-selector-button {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    background-color: #2d333b;
+    border-radius: 5px;
+    color: #fff;
+    border: 2px solid #444c56;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+    transition: 0.3s all linear;
+}
+
+input::file-selector-button:hover {
+    background-color: #22272e;
+}
