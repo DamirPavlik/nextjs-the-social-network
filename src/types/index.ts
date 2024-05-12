@@ -21,6 +21,7 @@ export interface PostProps {
   likes: number;
   title: string;
   username: string;
+  profilePicture: string;
 }
 
 export interface ErrorProps {

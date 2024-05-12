@@ -9,6 +9,7 @@ export async function getPosts() {
     content: doc.data().content,
     username: doc.data().username,
     likes: doc.data().likes,
+    profilePicture: doc.data().profilePicture,
   }));
   return posts;
 }
