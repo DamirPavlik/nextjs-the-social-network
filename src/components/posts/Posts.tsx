@@ -5,11 +5,11 @@ const Posts = async () => {
   const posts = await getPosts();
 
   return (
-    <div>
+    <section className="mt-10">
       {posts.map((post) => (
         <Post key={post.id} {...post} />
       ))}
-    </div>
+    </section>
   );
 };
 
